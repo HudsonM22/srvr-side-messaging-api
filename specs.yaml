@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Message API Server
+  description: |-
+    Message API by Hudson Maiorana.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3001
+paths:
+  /user:
+    get:
+      summary: Get user test endpoint
+      description: Returns test message
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Joe User
+    
+    post:
+      summary: Create new user
+      description: Creates new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: ValidationError
+                  errors:
+                    type: object
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Internal server error message
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        username:
+          type: string
+          minLength: 3
+          example: fordedgerunner
+        firstname:
+          type: string
+          example: Ford
+        lastname:
+          type: string
+          example: Runner
+        email:
+          type: string
+          format: email
+          example: ford@edgerunner.com
+        password:
+          type: string
+          minLength: 8
+          example: passwordle
+      required:
+        - username
+        - firstname
+        - lastname
+        - email
+        - password
+    
+    UserInput:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 3
+          example: fordedgerunner
+        firstname:
+          type: string
+          example: Ford
+        lastname:
+          type: string
+          example: Runner
+        email:
+          type: string
+          format: email
+          example: cris.p@bacon.com
+        password:
+          type: string
+          minLength: 8
+          example: passvalidation
+      required:
+        - username
+        - firstname
+        - lastname
+        - email
+        - password
