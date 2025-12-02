@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import userRouter from './users/routers/user.js'
+import userRouter from './routers/user.js'
 import './db/mongoose.js'
 import friendRouter from './models/FriendRequest.js'
 const app = express() 

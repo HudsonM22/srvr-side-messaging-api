@@ -1,7 +1,7 @@
 import Router from 'express'
 import User from '../models/user.js'
 import { connect } from 'mongoose'
-import { authenticate } from '../../middleware/auth.js'
+import { authenticate } from '../middleware/auth.js'
 
 const router = new Router()
 

@@ -2,9 +2,9 @@ import mongoose, { Schema } from "mongoose"
 import validator from 'validator'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import Request from "../../models/requests"
-import ChatInvite from "../../models/ChatInvite"
-import FriendRequest from "../../models/FriendRequest"
+import Request from "./requests"
+import ChatInvite from "./ChatInvite"
+import FriendRequest from "./FriendRequest"
 
 const userSchema = new mongoose.Schema({
     username: {

@@ -1,6 +1,6 @@
 import Router from 'express'
 import User from './models/User.js'
-import FriendRequest from '../models/requests/FriendRequest.js'
+import FriendRequest from '../models/FriendRequest.js'
 import { auth } from '../middleware/auth.js'
 
 const router = new Router()
