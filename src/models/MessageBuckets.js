@@ -38,4 +38,5 @@ messageBucketSchema.pre('save', function(next) {
     next()
 })
 
-export default model('MessageBucket', messageBucketSchema)
+const MessageBucket = model('MessageBucket', messageBucketSchema)
+export default MessageBucket

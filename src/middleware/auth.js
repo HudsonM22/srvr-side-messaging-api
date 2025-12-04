@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/user.js'
 
+
 export const authenticate = async (req) => {
     const authHeader = req.header('Authorization')
     if (!authHeader) {
@@ -8,8 +9,7 @@ export const authenticate = async (req) => {
     }
 
     const token = authHeader.replace('Bearer ', '')
-    
-    //extract user id from token
+    // extract user id from token and verify
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
     if (!decoded) {
@@ -27,4 +27,20 @@ export const authenticate = async (req) => {
     }
 
     return user
+}
+
+export const auth = async (req, res, next) => {
+    try {
+        const user = await authenticate(req)
+        const authHeader = req.header('Authorization')
+        const token = authHeader ? authHeader.replace('Bearer ', '') : undefined
+
+        req.user = user
+        req.token = token
+        next()
+    }
+    catch (err) {
+        // consistent 401 Unauthorized for auth failures
+        res.status(401).send({ error: 'Please authenticate.' })
+    }
 }

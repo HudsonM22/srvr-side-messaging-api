@@ -4,7 +4,8 @@ const chatSchema = new Schema({
     chatType: {
         type: String,
         enum: ['private', 'group'],
-        required: true
+        required: true,
+        default: 'group'    
     },
     messageBuckets: {
         type: [Schema.Types.ObjectId],
@@ -41,4 +42,5 @@ const chatSchema = new Schema({
     }
 })
 
-export default model('Chat', chatSchema)
+const Chat = model('Chat', chatSchema)
+export default Chat
