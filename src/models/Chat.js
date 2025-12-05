@@ -42,5 +42,12 @@ const chatSchema = new Schema({
     }
 })
 
+chatSchema.methods.getCurrentMessageBucketId = function() {
+    if (this.messageBuckets.length === 0) {
+        return null
+    }
+    return this.messageBuckets[0] //latest bucket since reversing array in chronological order
+}
+
 const Chat = model('Chat', chatSchema)
 export default Chat

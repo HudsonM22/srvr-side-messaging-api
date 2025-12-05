@@ -3,34 +3,39 @@ import { model, Schema } from 'mongoose'
 const messageBucketSchema = new Schema({
     startDate: {
         type: Date,
-        required: true
+        required: false
     },
     endDate: {
         type: Date,
-        required: true
+        required: false
     },
     size : {
         type: Number,
         required: true,
         default: 0
     },
-    messages: [
-        {
-            content: {
-                type: String,
-                required: true
-            },
-            timeStamp: {
-                type: Date,
-                required: true
-            },
-            sender: {
-                type: Schema.Types.ObjectId,
-                ref: 'User',
-                required: true
+    messages: {
+        type: [
+            {
+                content: {
+                    type: String,
+                    required: true
+                },
+                timeStamp: {
+                    type: Date,
+                    required: true,
+                    default: Date.now
+                },
+                sender: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'User',
+                    required: true
+                }
             }
-        }
-    ]
+        ],
+        default: [],
+        required: true
+    }
 })
 
 messageBucketSchema.pre('save', function(next) {
