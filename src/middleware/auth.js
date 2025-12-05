@@ -40,7 +40,6 @@ export const auth = async (req, res, next) => {
         next()
     }
     catch (err) {
-        // consistent 401 Unauthorized for auth failures
         res.status(401).send({ error: 'Please authenticate.' })
     }
 }
