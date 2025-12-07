@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import Request from "./Request.js";
+import Request from "./Requests.js";
 
 const chatInviteSchema = new Schema({ 
     chat: {

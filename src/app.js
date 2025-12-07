@@ -2,7 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import userRouter from './routers/user.js'
 import './db/mongoose.js'
-import friendRouter from './models/FriendRequest.js'
+import friendRouter from './routers/friends.js'
+import chatRouter from './routers/chats.js'
 const app = express() 
 
 app.use(express.json()) 
@@ -14,6 +15,7 @@ app.use(function (req, res, next) {
 }); 
 app.use(userRouter)
 app.use(friendRouter)
+app.use(chatRouter)
 
 const port = process.env.PORT 
 app.listen(port, () => { 
